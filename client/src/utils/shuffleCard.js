@@ -3,12 +3,10 @@
 const shuffleCard = (array) => {
   const { length } = array;
 
-  for (let i = length; i > 0; i--) {
-    const randomIndex = Math.floor(Math.random() * 1);
-    const currentIndex = i - 1;
-    const temp = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temp;
+  /// Fisher-Yates Shuffle in javascript
+  for (let i = length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 
   return array;

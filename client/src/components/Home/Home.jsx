@@ -7,7 +7,7 @@ import Game from "../Game/Game";
 
 function Home() {
   const [enterGame, setEnterGame] = useState(false);
-  const [inGame, setIngame] = useState(true);
+  const [inGame, setIngame] = useState(false);
 
   const containerRef = useRef();
   const welcomeTextRef = useRef();

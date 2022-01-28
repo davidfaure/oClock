@@ -1,6 +1,7 @@
 import React from "react";
 import Memory from "./Memory/Memory";
-import Scoreboard from "./Scoreboard/Scoreboard";
+import Timer from "./Timer/Timer";
+// import Scoreboard from "./Scoreboard/Scoreboard";
 
 function Game() {
   return (
@@ -8,7 +9,8 @@ function Game() {
       <h1> GAME </h1>
       <div>Rules</div>
       <Memory />
-      <Scoreboard />
+      {/* <Scoreboard /> */}
+      <Timer />
     </div>
   );
 }

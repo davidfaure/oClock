@@ -1,0 +1,12 @@
+.render-time-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.render-time-value {
+  font-size: 0.5vw;
+  color: black;
+  font-weight: 600;
+}
