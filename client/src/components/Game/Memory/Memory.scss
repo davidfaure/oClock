@@ -1,0 +1,10 @@
+.memory-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  // grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: stretch;
+  gap: 1rem;
+  margin: 0 auto;
+  width: 800px;
+}
