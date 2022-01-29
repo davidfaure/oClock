@@ -1,11 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { gsap } from "gsap";
+import { gameIntro, openModal } from "../../redux/action";
 
 import "./Home.scss";
 import Game from "../Game/Game";
 
 function Home() {
+  const introGame = useSelector((state) => state.Game.gameIntro);
+  const dispatch = useDispatch();
   const [enterGame, setEnterGame] = useState(false);
   const [inGame, setIngame] = useState(false);
 
@@ -48,27 +52,28 @@ function Home() {
         .eventCallback(
           "onComplete",
           setTimeout(() => {
-            setIngame(true);
+            dispatch(gameIntro());
+            dispatch(openModal("intro"));
           }, 1600)
         );
     }
   }, [enterGame]);
 
-  return inGame ? (
+  return !introGame ? (
     <Game />
   ) : (
     <>
       {" "}
       <div className="load-container" ref={containerRef}>
         <h1 className="welcome-text" ref={welcomeTextRef}>
-          Bienvenue dans
+          Welcome to
         </h1>
         <h1 className="memory-text" ref={memoryTextRef}>
           Memory Game
         </h1>
         <button
           type="button"
-          className="enter-button"
+          className="enter-button primary"
           ref={buttonRef}
           onClick={() => setEnterGame(true)}
         >

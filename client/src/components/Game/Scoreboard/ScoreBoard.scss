@@ -1,0 +1,70 @@
+.Scoreboard-Wrapper {
+  width: 60%;
+  transition: all 0.5s ease-in-out;
+}
+
+.Scoreboard-Container {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background-color: azure;
+  box-shadow: 0 16px 48px 0 rgb(0 55 83 / 13%);
+  padding: 10px 20px;
+}
+
+.Scoreboard-Title {
+  width: 100%;
+  display: flex;
+  padding: 15px 0px 15px 0px;
+  text-align: center;
+  border-bottom: 1px solid rgb(161, 161, 161);
+
+  // background-color: #e4638c;
+}
+
+.Scoreboard-Item-Title {
+  width: 100%;
+  display: flex;
+  padding: 15px 0px 15px 0px;
+  text-align: center;
+  // background-color: #d487a0;
+}
+
+.Scoreboard-Item-Title-You {
+  width: 100%;
+  display: flex;
+  padding: 15px 0px 15px 0px;
+  text-align: center;
+  color: #da2d64;
+  // border: 1px solid #66cb9f;
+  // border-radius: 8px;
+}
+
+.Scoreboard-Rank,
+.Scoreboard-Score,
+.Scoreboard-Time {
+  width: 20%;
+  font-weight: 700;
+  // background-color: #e4638c;
+  // color: #fff;
+}
+.Scoreboard-Player {
+  width: 40%;
+  font-weight: 700;
+
+  // color: #fff;
+  // background-color: #e4638c;
+}
+
+.Scoreboard-Item-Rank,
+.Scoreboard-Item-Score,
+.Scoreboard-Item-Time {
+  width: 20%;
+  // background-color: #d487a0;
+  // color: #fff;
+}
+.Scoreboard-Item-Player {
+  width: 40%;
+  // color: #fff;
+  // background-color: #d487a0;
+}

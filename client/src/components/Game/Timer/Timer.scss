@@ -6,7 +6,27 @@
 }
 
 .render-time-value {
-  font-size: 0.5vw;
+  font-size: 2vw;
   color: black;
   font-weight: 600;
+}
+
+.render-time-value-end {
+  font-size: 2vw;
+
+  color: #a30000;
+  font-weight: 600;
+  animation: hurry 0.5s infinite;
+}
+
+@keyframes hurry {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
 }

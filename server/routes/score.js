@@ -5,7 +5,7 @@ const db = require('../config');
 
 // GET ALL score 
 router.get("/", (req, res) => {
-  db.query("SELECT * FROM score", (err, results) => {
+  db.query("SELECT * FROM score ORDER BY time", (err, results) => {
     if (err) {
       return res.status(500).json({
         error: err.message,
