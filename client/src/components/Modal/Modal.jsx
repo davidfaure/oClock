@@ -2,27 +2,30 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+
 import {
   closeModal,
   gameOver,
   gameRestart,
   gameStart,
+  gameWin,
   setName,
 } from "../../redux/action";
 import { getTitle, getButtonTitle } from "../../utils/buttonHelp";
 
 import "./Modal.scss";
 import Scoreboard from "../Game/Scoreboard/Scoreboard";
+import WinContent from "./WinContent";
+import LooseContent from "./LooseContent";
 
 function Modal({ type }) {
   const dispatch = useDispatch();
-  const [showScore, setShowScore] = useState(type === "win");
+  const [showScore, setShowScore] = useState(false);
   const [inputData, setInputData] = useState({ name: "" });
   const [nameGiven, setNameGiven] = useState(false);
 
   const submitName = (e) => {
     e.preventDefault();
-    console.log("submit");
     dispatch(setName(inputData.name));
     setNameGiven(true);
   };
@@ -32,10 +35,40 @@ function Modal({ type }) {
     setInputData({ ...inputData, [name]: value });
   };
 
+  const getContent = (step) => {
+    switch (step) {
+      case "intro":
+        return (
+          <form className="Modal-Intro-Name" onSubmit={submitName}>
+            <input
+              type="text"
+              name="name"
+              value={inputData.name}
+              onChange={onChange}
+              placeholder="Enter Your Name"
+            />
+            <button type="submit" className="Modal-button secondary">
+              Submit
+            </button>
+          </form>
+        );
+      case "win":
+        return <WinContent />;
+      case "loose":
+        return <LooseContent />;
+      default:
+    }
+  };
+
   const closeIt = (action) => {
     switch (action) {
       case "intro":
         dispatch(gameStart());
+        dispatch(closeModal());
+        break;
+      case "win":
+        dispatch(gameRestart());
+        dispatch(gameWin());
         dispatch(closeModal());
         break;
       case "loose":
@@ -54,20 +87,7 @@ function Modal({ type }) {
       <div className="Modal-Blur" />
       <div className="Modal-Container">
         <h1>{getTitle(type)}</h1>
-        {type === "intro" && (
-          <form className="Modal-Intro-Name" onSubmit={submitName}>
-            <input
-              type="text"
-              name="name"
-              value={inputData.name}
-              onChange={onChange}
-              placeholder="Enter Your Name"
-            />
-            <button type="submit" className="Modal-button secondary">
-              Submit
-            </button>
-          </form>
-        )}
+        {getContent(type)}
         <button
           onClick={() => setShowScore(!showScore)}
           type="button"

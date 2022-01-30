@@ -62,8 +62,6 @@ function Timer() {
     }
   }, [startGame, endGame, winGame]);
 
-  console.log("play", play);
-
   return (
     <div className="timer-wrapper">
       {play && (
@@ -77,8 +75,6 @@ function Timer() {
             return { shouldRepeat: true };
           }}
           trailColor="#9fa2b4"
-          // size={circleDimension}
-          // strokeWidth={circle}
         >
           {renderTime}
         </CountdownCircleTimer>

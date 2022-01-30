@@ -6,6 +6,7 @@ import { gameIntro, openModal } from "../../redux/action";
 
 import "./Home.scss";
 import Game from "../Game/Game";
+import { homeAnimation } from "../../utils/animation";
 
 function Home() {
   const introGame = useSelector((state) => state.Game.gameIntro);
@@ -27,14 +28,9 @@ function Home() {
           ease: "power2",
         },
       })
-      .to(welcomeTextRef.current, {
-        y: -50,
-        autoAlpha: 1,
-        duration: 1,
-        delay: 0.5,
-      })
-      .to(memoryTextRef.current, { y: -50, autoAlpha: 1, duration: 1 })
-      .to(buttonRef.current, { y: -50, autoAlpha: 1, duration: 1 });
+      .add(homeAnimation(welcomeTextRef.current, -50, 1, 1, 0.5))
+      .add(homeAnimation(memoryTextRef.current, -50, 1, 1, 0))
+      .add(homeAnimation(buttonRef.current, -50, 1, 1, 0));
   }, []);
 
   useEffect(() => {

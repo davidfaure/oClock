@@ -59,4 +59,16 @@ const gameGrid = [
   },
 ];
 
+export const starScore = [
+  { id: 1, image: images.starFilled },
+  { id: 3, image: images.starFilled },
+  { id: 3, image: images.starFilled },
+];
+
+export const emptyScore = [
+  { id: 1, image: images.starEmpty },
+  { id: 3, image: images.starEmpty },
+  { id: 3, image: images.starEmpty },
+];
+
 export default gameGrid;

@@ -14,3 +14,8 @@ export { default as strawberry } from "./strawberry.png";
 export { default as watermelon } from "./watermelon.png";
 
 export { default as backCard } from "./backCard.png";
+
+export { default as starFilled } from "./StarFilled.png";
+export { default as starEmpty } from "./StarEmpty.png";
+
+export { default as arrowDown } from "./ios-arrow-down-logo-icon-png-svg.png";

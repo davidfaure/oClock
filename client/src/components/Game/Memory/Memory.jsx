@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  gameOver,
   gameRestart,
   gameWin,
   openModal,
@@ -26,36 +27,21 @@ function Memory() {
   const timeout = useRef(null);
 
   const restartTheGame = useSelector((state) => state.Game.gameRestart);
-  const playerName = useSelector((state) => state.Game.player);
-  const playerScore = useSelector((state) => state.Game.score);
-  const playerTime = useSelector((state) => state.Game.time);
+  const winGame = useSelector((state) => state.Game.gameWinner);
   const dispatch = useDispatch();
-
-  console.log(cardsOpen, foundCards, shouldDisableAllCards, cards);
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(gameWin());
-      // const data = {
-      //   user: playerName,
-      //   time: playerTime,
-      //   score: playerScore,
-      // };
-      // axios
-      //   .post("http://localhost:8080/api/score", data)
-      //   .then((res) => console.log(res));
-      setTimeout(() => {
-        dispatch(openModal("win"));
-      }, 2000);
-    }, 5000);
-  }, []);
 
   const checkVictory = () => {
     if (Object.keys(foundCards).length === gameGrid.length) {
-      alert("YOU WIN");
       dispatch(gameWin());
     }
   };
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(gameWin());
+  //     dispatch(openModal("win"));
+  //   }, 2000);
+  // }, []);
 
   const handleCardClicked = (index) => {
     // Have a maximum of 2 items in array at once.
@@ -123,6 +109,12 @@ function Memory() {
     }
   }, [restartTheGame]);
 
+  useEffect(() => {
+    if (winGame) {
+      dispatch(openModal("win"));
+    }
+  }, [winGame]);
+
   return (
     <div className="memory-container">
       {cards.map((card, index) => {
@@ -132,6 +124,7 @@ function Memory() {
             card={card}
             index={index}
             onClick={handleCardClicked}
+            isDisabled={shouldDisableAllCards}
             isInactive={checkIsInactive(card)}
             isFlipped={checkIsFlipped(index)}
           />
