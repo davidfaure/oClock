@@ -1,4 +1,5 @@
 /* eslint-disable default-param-last */
+import gameGrid from "../../utils/appData";
 import * as types from "../constants";
 
 const intialState = {
@@ -10,6 +11,7 @@ const intialState = {
   player: "",
   time: null,
   score: 0,
+  fruitsFound: gameGrid,
   Modal: {
     type: "",
     isOpen: false,
@@ -84,6 +86,26 @@ const gameReducer = (state = intialState, action) => {
       return {
         ...state,
         time: `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`,
+      };
+    }
+    case types.RESET_FRUITS_FOUND:
+      return {
+        ...state,
+        fruitsFound: gameGrid,
+      };
+    case types.FRUITS_FOUND: {
+      const { fruit } = action;
+      return {
+        ...state,
+        fruitsFound: state.fruitsFound.map((e) => {
+          if (e.type === fruit) {
+            return {
+              ...e,
+              isFound: true,
+            };
+          }
+          return e;
+        }),
       };
     }
     default:

@@ -69,3 +69,16 @@ export const updateScore = () => {
     type: types.UPDATE_SCORE,
   };
 };
+
+export const foundFruits = (fruit) => {
+  return {
+    type: types.FRUITS_FOUND,
+    fruit,
+  };
+};
+
+export const resetFoundFruits = () => {
+  return {
+    type: types.RESET_FRUITS_FOUND,
+  };
+};

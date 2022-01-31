@@ -1,45 +1,9 @@
-import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  gameOver,
-  openModal,
-  gameStart,
-  calculateTime,
-} from "../../../redux/action";
+import { gameOver, openModal, gameStart } from "../../../redux/action";
+import RenderTime from "./RenderTime";
 import "./Timer.scss";
-
-function renderTime({ remainingTime }) {
-  const minutes = Math.floor(remainingTime / 60);
-  const seconds = remainingTime % 60;
-  const winGame = useSelector((state) => state.Game.gameWinner);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (winGame) {
-      dispatch(calculateTime(remainingTime));
-    }
-  }, [winGame]);
-
-  return (
-    <div className="render-time-wrapper">
-      <div>Remaining</div>
-      <div
-        className={
-          remainingTime < 30 ? "render-time-value-end" : "render-time-value"
-        }
-      >
-        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-      </div>
-      <div className="text-timer">minutes</div>
-    </div>
-  );
-}
-
-renderTime.propTypes = {
-  remainingTime: PropTypes.number.isRequired,
-};
 
 function Timer() {
   const startGame = useSelector((state) => state.Game.gameStarted);
@@ -76,7 +40,7 @@ function Timer() {
           }}
           trailColor="#9fa2b4"
         >
-          {renderTime}
+          {RenderTime}
         </CountdownCircleTimer>
       )}
     </div>
