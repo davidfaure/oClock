@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gsap } from "gsap";
@@ -12,7 +11,6 @@ function Home() {
   const introGame = useSelector((state) => state.Game.gameIntro);
   const dispatch = useDispatch();
   const [enterGame, setEnterGame] = useState(false);
-  const [inGame, setIngame] = useState(false);
 
   const containerRef = useRef();
   const welcomeTextRef = useRef();
@@ -76,7 +74,7 @@ function Home() {
           Enter
         </button>
       </div>
-      <div className="flip2" ref={flipRef} />{" "}
+      <div className="flip2" ref={flipRef} />
     </>
   );
 }

@@ -19,4 +19,11 @@ export const homeAnimation = (target, y, duration, autoAlpha, delay) => {
   return gsap.to(target, { y, autoAlpha, duration, delay });
 };
 
+export const fadeIn = (target) => {
+  return gsap.to(target, {
+    autoAlpha: 1,
+    y: 0,
+  });
+};
+
 export default addToRef;

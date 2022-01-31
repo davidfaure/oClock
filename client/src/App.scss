@@ -4,6 +4,8 @@
   text-align: center;
 }
 
+// general color declaration, could have use --var instead
+
 .primary {
   background-color: #3754db;
 }
@@ -14,4 +16,12 @@
 
 .tertiary {
   background-color: #da2d64;
+}
+
+.greenColor {
+  color: #66cb9f;
+}
+
+.redColor {
+  color: #da2d64;
 }

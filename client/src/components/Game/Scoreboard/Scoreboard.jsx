@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { FaSort } from "react-icons/fa";
+import gsap from "gsap";
 import useAxios from "../../../utils/useAxios";
 import "./ScoreBoard.scss";
 import ScoreItem from "./ScoreItem";
@@ -19,12 +20,21 @@ function Scoreboard() {
 
   const [scoreData, setScoreData] = useState(null);
   const [asc, setAsc] = useState(false);
+  const tl = useRef();
+  const scoreBoardRef = useRef();
 
   useEffect(() => {
     if (res) {
       setScoreData(res);
     }
   }, [res]);
+
+  useEffect(() => {
+    tl.current = gsap.to(scoreBoardRef.current, {
+      autoAlpha: 1,
+      duration: 0.4,
+    });
+  }, []);
 
   const sortScore = (type) => {
     setAsc(!asc);
@@ -33,7 +43,7 @@ function Scoreboard() {
   };
 
   return (
-    <div className="Scoreboard-Wrapper">
+    <div className="Scoreboard-Wrapper" ref={scoreBoardRef}>
       {loading ? (
         <div>Loading...</div>
       ) : (

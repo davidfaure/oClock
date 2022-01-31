@@ -1,19 +1,17 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
-import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  gameOver,
   gameRestart,
   gameWin,
   openModal,
   setScore,
   updateScore,
+  resetFoundFruits,
+  foundFruits,
 } from "../../../redux/action";
 import gameGrid from "../../../utils/appData";
 import shuffleCard from "../../../utils/shuffleCard";
-import useAxios from "../../../utils/useAxios";
 import Card from "./Cards";
 
 import "./Memory.scss";
@@ -23,6 +21,7 @@ function Memory() {
   const [cardsOpen, setCardsOpen] = useState([]);
   const [foundCards, setFoundCards] = useState({});
   const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
+
   const timeout = useRef(null);
 
   const restartTheGame = useSelector((state) => state.Game.gameRestart);
@@ -64,6 +63,7 @@ function Memory() {
     // check if card are equal and addIt to
     if (cards[first].type === cards[second].type) {
       setFoundCards((prev) => ({ ...prev, [cards[first].type]: true }));
+      dispatch(foundFruits(cards[first].type));
       setCardsOpen([]);
       return;
     }
@@ -101,6 +101,7 @@ function Memory() {
       setFoundCards({});
       setCardsOpen([]);
       dispatch(setScore(0));
+      dispatch(resetFoundFruits());
       setShouldDisableAllCards(false);
       // set a shuffled deck of cards
       setCards(shuffleCard(gameGrid.concat(gameGrid)));

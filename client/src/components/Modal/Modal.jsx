@@ -1,7 +1,8 @@
 /* eslint-disable consistent-return */
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import gsap from "gsap";
 
 import {
   closeModal,
@@ -17,12 +18,21 @@ import "./Modal.scss";
 import Scoreboard from "../Game/Scoreboard/Scoreboard";
 import WinContent from "./WinContent";
 import LooseContent from "./LooseContent";
+import { fadeIn } from "../../utils/animation";
 
 function Modal({ type }) {
   const dispatch = useDispatch();
   const [showScore, setShowScore] = useState(false);
   const [inputData, setInputData] = useState({ name: "" });
   const [nameGiven, setNameGiven] = useState(false);
+
+  const tl = useRef();
+
+  const titleRef = useRef();
+  const scoreButtonRef = useRef();
+  const closeButtonRef = useRef();
+  const submitButtonRef = useRef();
+  const exitButtonRef = useRef();
 
   const submitName = (e) => {
     e.preventDefault();
@@ -34,6 +44,16 @@ function Modal({ type }) {
     const { name, value } = e.target;
     setInputData({ ...inputData, [name]: value });
   };
+
+  useEffect(() => {
+    tl.current = gsap
+      .timeline()
+      .add(fadeIn(titleRef.current))
+      .add(fadeIn(submitButtonRef.current))
+      .add(fadeIn(scoreButtonRef.current))
+      .add(fadeIn(exitButtonRef.current))
+      .add(fadeIn(closeButtonRef.current));
+  }, []);
 
   const getContent = (step) => {
     switch (step) {
@@ -47,7 +67,11 @@ function Modal({ type }) {
               onChange={onChange}
               placeholder="Enter Your Name"
             />
-            <button type="submit" className="Modal-button secondary">
+            <button
+              type="submit"
+              className="Modal-button secondary"
+              ref={submitButtonRef}
+            >
               Submit
             </button>
           </form>
@@ -86,12 +110,13 @@ function Modal({ type }) {
     <div className="Modal-Game">
       <div className="Modal-Blur" />
       <div className="Modal-Container">
-        <h1>{getTitle(type)}</h1>
+        <h1 ref={titleRef}>{getTitle(type)}</h1>
         {getContent(type)}
         <button
           onClick={() => setShowScore(!showScore)}
           type="button"
           className={`Modal-button ${showScore ? "tertiary" : "secondary"}`}
+          ref={scoreButtonRef}
         >
           {showScore ? "Hide Score" : "Show Score"}
         </button>
@@ -102,6 +127,7 @@ function Modal({ type }) {
               onClick={() => window.location.reload()}
               type="button"
               className="Modal-button tertiary"
+              ref={exitButtonRef}
             >
               Exit
             </button>
@@ -111,6 +137,7 @@ function Modal({ type }) {
             type="button"
             className="Modal-button primary"
             disabled={type === "intro" && !nameGiven}
+            ref={closeButtonRef}
           >
             {getButtonTitle(type)}
           </button>
