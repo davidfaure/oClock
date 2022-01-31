@@ -28,7 +28,7 @@ function Scoreboard() {
 
   const sortScore = (type) => {
     setAsc(!asc);
-    const url = `http://localhost:8080/api/score/sort?type=${type}&asc=${asc}`;
+    const url = `${process.env.REACT_APP_ENDPOINT_API}/score/sort?type=${type}&asc=${asc}`;
     axios.get(url).then((response) => setScoreData(response.data));
   };
 
