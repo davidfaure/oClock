@@ -1,0 +1,39 @@
+.card {
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s;
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+
+  @media (max-width: 1281px) {
+    width: 80px;
+    height: 80px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 2px 4px 4px #dedede;
+    border-radius: 16px;
+  }
+
+  .card-face {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &.card-back-face {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  &.is-inactive {
+    opacity: 0;
+  }
+}

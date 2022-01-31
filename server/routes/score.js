@@ -5,7 +5,7 @@ const db = require('../config');
 
 // GET ALL score 
 router.get("/", (req, res) => {
-  db.query("SELECT * FROM score", (err, results) => {
+  db.query("SELECT * FROM score ORDER BY time", (err, results) => {
     if (err) {
       return res.status(500).json({
         error: err.message,
@@ -14,6 +14,33 @@ router.get("/", (req, res) => {
     } 
       return res.status(200).json(results);
   })
+})
+
+
+// GET score and sort by query ( time, score, player) ASCENDANT OR DESCENDANT
+router.get("/sort", (req, res) => {
+  const { type, asc } = req.query;
+  if (req.query) {
+    let sort;
+    if (asc === 'true') {
+      sort = 'ASC';
+    } 
+    if (asc === 'false') {
+      sort = 'DESC';
+    }
+    const sqlRequest = `SELECT * FROM score ORDER BY ${type} ${sort}`;
+    db.query(sqlRequest, (err, results) => {
+          if (err) {
+      return res.status(500).json({
+        error: err.message,
+        sql: err.sql,
+      });
+    } 
+      return res.status(200).json(results);
+    })
+  } else {
+    return res.status(400).send("Des champs sont manquants")
+  }
 })
 
 // get score from id 
