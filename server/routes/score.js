@@ -16,6 +16,33 @@ router.get("/", (req, res) => {
   })
 })
 
+
+// GET score and sort by query ( time, score, player) ASCENDANT OR DESCENDANT
+router.get("/sort", (req, res) => {
+  const { type, asc } = req.query;
+  if (req.query) {
+    let sort;
+    if (asc === 'true') {
+      sort = 'ASC';
+    } 
+    if (asc === 'false') {
+      sort = 'DESC';
+    }
+    const sqlRequest = `SELECT * FROM score ORDER BY ${type} ${sort}`;
+    db.query(sqlRequest, (err, results) => {
+          if (err) {
+      return res.status(500).json({
+        error: err.message,
+        sql: err.sql,
+      });
+    } 
+      return res.status(200).json(results);
+    })
+  } else {
+    return res.status(400).send("Des champs sont manquants")
+  }
+})
+
 // get score from id 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
