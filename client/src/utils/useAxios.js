@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8080/api";
+axios.defaults.baseURL = process.env.REACT_APP_ENDPOINT_API;
 
 const useAxios = (params) => {
   const [res, setRes] = useState(null);

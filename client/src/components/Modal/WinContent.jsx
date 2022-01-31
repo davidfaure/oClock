@@ -28,8 +28,7 @@ function WinContent() {
       time: playerTime,
       score: playerScore,
     };
-    console.log(data);
-    axios.post("http://localhost:8080/api/score", data).then();
+    axios.post(`${process.env.REACT_APP_ENDPOINT_API}/score`, data).then();
   }, []);
 
   return (
