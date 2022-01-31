@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+// utils function for Modal component, get modal title and get modal button text
 export const getTitle = (type) => {
   switch (type) {
     case "intro":

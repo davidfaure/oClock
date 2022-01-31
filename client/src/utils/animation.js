@@ -1,3 +1,4 @@
+// GSAP animation and utils function to anime
 import gsap from "gsap";
 
 const addToRef = (el, ref) => {

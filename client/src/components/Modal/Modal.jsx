@@ -97,6 +97,15 @@ function Modal({ type }) {
         </button>
         {showScore && <Scoreboard />}
         <div className="Modal-Button-Container">
+          {type === "win" && (
+            <button
+              onClick={() => window.location.reload()}
+              type="button"
+              className="Modal-button tertiary"
+            >
+              Exit
+            </button>
+          )}
           <button
             onClick={() => closeIt(type)}
             type="button"

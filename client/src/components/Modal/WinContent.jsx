@@ -4,7 +4,7 @@ import confetti from "canvas-confetti";
 import gsap from "gsap";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { starScore } from "../../utils/memoryGrid";
+import { starScore } from "../../utils/appData";
 import addToRef, { starAnimation } from "../../utils/animation";
 
 function WinContent() {

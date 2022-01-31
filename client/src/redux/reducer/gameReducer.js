@@ -2,7 +2,7 @@
 import * as types from "../constants";
 
 const intialState = {
-  gameIntro: false,
+  gameIntro: true,
   gameStarted: false,
   gameOver: false,
   gameRestart: false,

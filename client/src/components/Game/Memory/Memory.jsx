@@ -11,7 +11,7 @@ import {
   setScore,
   updateScore,
 } from "../../../redux/action";
-import gameGrid from "../../../utils/memoryGrid";
+import gameGrid from "../../../utils/appData";
 import shuffleCard from "../../../utils/shuffleCard";
 import useAxios from "../../../utils/useAxios";
 import Card from "./Cards";
@@ -19,7 +19,6 @@ import Card from "./Cards";
 import "./Memory.scss";
 
 function Memory() {
-  // eslint-disable-next-line no-unused-vars
   const [cards, setCards] = useState(shuffleCard(gameGrid.concat(gameGrid)));
   const [cardsOpen, setCardsOpen] = useState([]);
   const [foundCards, setFoundCards] = useState({});

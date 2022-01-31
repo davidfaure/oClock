@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { FaSort } from "react-icons/fa";
 import useAxios from "../../../utils/useAxios";
 import "./ScoreBoard.scss";
 import ScoreItem from "./ScoreItem";
+
 import * as images from "../../../assets/images";
+import { scoreHeader } from "../../../utils/appData";
 
 function Scoreboard() {
   const { res, error, loading } = useAxios({
@@ -12,6 +16,21 @@ function Scoreboard() {
       accept: "*/*",
     },
   });
+
+  const [scoreData, setScoreData] = useState(null);
+  const [asc, setAsc] = useState(false);
+
+  useEffect(() => {
+    if (res) {
+      setScoreData(res);
+    }
+  }, [res]);
+
+  const sortScore = (type) => {
+    setAsc(!asc);
+    const url = `http://localhost:8080/api/score/sort?type=${type}&asc=${asc}`;
+    axios.get(url).then((response) => setScoreData(response.data));
+  };
 
   return (
     <div className="Scoreboard-Wrapper">
@@ -24,12 +43,22 @@ function Scoreboard() {
             <>
               <div className="Scoreboard-Container">
                 <div className="Scoreboard-Title">
-                  <div className="Scoreboard-Rank">Rank</div>
-                  <div className="Scoreboard-Player">Player</div>
-                  <div className="Scoreboard-Time">Time</div>
-                  <div className="Scoreboard-Score">Score</div>
+                  {scoreHeader.map((header) => (
+                    <div
+                      className={`Scoreboard-${header.label}`}
+                      onClick={
+                        header.isSorted
+                          ? () => sortScore(header.sort)
+                          : undefined
+                      }
+                      role="presentation"
+                    >
+                      <p>{header.label}</p>
+                      {header.isSorted && <FaSort />}
+                    </div>
+                  ))}
                 </div>
-                {res.map((score, index) => (
+                {scoreData.map((score, index) => (
                   <ScoreItem
                     rank={index}
                     user={score.user}

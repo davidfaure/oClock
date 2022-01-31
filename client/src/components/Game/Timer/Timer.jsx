@@ -67,7 +67,7 @@ function Timer() {
       {play && (
         <CountdownCircleTimer
           isPlaying
-          duration={1800}
+          duration={180}
           colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
           colorsTime={[180, 108, 54, 0]}
           onComplete={() => {

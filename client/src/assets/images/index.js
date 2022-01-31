@@ -7,7 +7,7 @@ export { default as greenApple } from "./greenApple.png";
 export { default as greenLemon } from "./greenLemon.png";
 export { default as lemon } from "./lemon.png";
 export { default as mulberry } from "./mulberry.png";
-export { default as orange } from "./orange.png";
+export { default as raspberry } from "./raspberry.png";
 export { default as redApple } from "./redApple.png";
 export { default as redOrange } from "./redOrange.png";
 export { default as strawberry } from "./strawberry.png";

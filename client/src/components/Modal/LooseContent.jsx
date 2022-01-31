@@ -1,5 +1,5 @@
 import React from "react";
-import { emptyScore } from "../../utils/memoryGrid";
+import { emptyScore } from "../../utils/appData";
 
 function LooseContent() {
   return (

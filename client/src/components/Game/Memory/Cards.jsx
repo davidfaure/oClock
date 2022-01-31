@@ -8,8 +8,8 @@ function Card({ onClick, card, index, isInactive, isFlipped, isDisabled }) {
     return !isFlipped && !isDisabled && onClick(index);
   };
 
-  const flipped = isFlipped && "is-flipped";
-  const inactive = isInactive && "is-inactive";
+  const flipped = isFlipped ? "is-flipped" : "";
+  const inactive = isInactive ? "is-inactive" : "";
 
   return (
     <div

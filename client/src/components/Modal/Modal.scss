@@ -41,7 +41,7 @@
 }
 
 .Modal-button {
-  width: 160px;
+  width: 170px;
   height: 48px;
   border-radius: 8px;
   padding: 16px 24px;
@@ -96,4 +96,10 @@
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
   }
+}
+
+.Modal-Button-Container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
