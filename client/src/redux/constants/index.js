@@ -12,3 +12,6 @@ export const SET_NAME = "SET_NAME";
 
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
+
+export const FRUITS_FOUND = "FRUITS_FOUND";
+export const RESET_FRUITS_FOUND = "RESET_FRUITS_FOUND";

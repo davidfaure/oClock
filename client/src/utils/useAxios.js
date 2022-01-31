@@ -1,3 +1,4 @@
+// custom hooks for inital score's api call
 import { useState, useEffect } from "react";
 import axios from "axios";
 

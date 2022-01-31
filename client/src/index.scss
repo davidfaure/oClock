@@ -24,7 +24,9 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-size: calc(60% + 0.8vmin);
+  font-size: calc(
+    60% + 0.8vmin
+  ); // resize naturally font-size helping designing for every screens
 }
 /*
   Typographic tweaks!
@@ -104,6 +106,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*
+  12. general font-size ( can be easily override for custom font size
+*/
 
 * {
   font-size: 1rem;
