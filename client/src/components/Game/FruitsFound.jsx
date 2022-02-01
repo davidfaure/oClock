@@ -29,6 +29,7 @@ function FruitsFound() {
                 alt={fruit.type}
                 key={fruit.type}
                 ref={(el) => addToRef(el, imageRef)}
+                draggable="false"
               />
             )
         )}

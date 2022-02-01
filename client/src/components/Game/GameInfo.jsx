@@ -24,7 +24,7 @@ function GameInfo() {
     <div className="GameInfo-Container">
       <div className="GameInfo-Up">
         <div className="GameInfo-Up-Title">
-          <img src={images.strawberry} alt="strawberry" />
+          <img src={images.strawberry} alt="strawberry" draggable="false" />
           <h2>Score</h2>
         </div>
         <div className="GameInfo-Up-Score">
@@ -49,7 +49,7 @@ function GameInfo() {
         <div className="GameInfo-Down-Best-Wrapper">
           <div className="GameInfo-Down-Time-Wrapper">
             <div className="GameInfo-Down-Time-Title">
-              <img src={images.grape} alt="grape" />
+              <img src={images.grape} alt="grape" draggable="false" />
               <span>Time</span>
             </div>
             <div className="GameInfo-Down-Time-Item">
@@ -58,7 +58,7 @@ function GameInfo() {
           </div>
           <div className="GameInfo-Down-Time-Wrapper">
             <div className="GameInfo-Down-Time-Title">
-              <img src={images.grape} alt="grape" />
+              <img src={images.grape} alt="grape" draggable="false" />
               <span>Score</span>
             </div>
             <div className="GameInfo-Down-Time-Item">

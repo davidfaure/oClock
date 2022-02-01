@@ -8,6 +8,7 @@ function Card({ onClick, card, index, isInactive, isFlipped, isDisabled }) {
     return !isFlipped && !isDisabled && onClick(index);
   };
 
+  // add className based on cards' state to anime the flip.
   const flipped = isFlipped ? "is-flipped" : "";
   const inactive = isInactive ? "is-inactive" : "";
 
@@ -19,9 +20,9 @@ function Card({ onClick, card, index, isInactive, isFlipped, isDisabled }) {
       role="presentation"
     >
       <div className="card-face card-font-face">
-        <img src={backCard} alt="backCard" />
+        <img src={backCard} alt="backCard" draggable="false" />
       </div>
-      <div className="card-face card-back-face">
+      <div className="card-face card-back-face" draggable="false">
         <img src={card.image} alt={card.type} />
       </div>
     </div>
