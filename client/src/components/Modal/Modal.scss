@@ -118,3 +118,110 @@
   align-items: center;
   gap: 40px;
 }
+
+#countdown {
+  position: relative;
+  margin: auto;
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  transform: scale(2);
+}
+
+#countdownTitle {
+  display: flex;
+  position: absolute;
+  top: 70%;
+  animation: bounceTitle 1s ease infinite;
+}
+
+#countdownTitle h4 {
+  color: #000;
+  font-size: 4vw;
+}
+
+#countdownTitleNoAnim {
+  display: flex;
+  position: absolute;
+  top: 70%;
+}
+
+#countdownTitleNoAnim h4 {
+  color: #000;
+  font-size: 4vw;
+}
+
+#countdownGo h4 {
+  color: #000;
+  font-size: 6vw;
+}
+
+#countdown-number {
+  color: #000;
+  display: inline-block;
+  line-height: 80px;
+  font-size: 2vw;
+}
+
+#svg,
+#svg-NoAnim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+  animation: countdownArrival 0.5s linear forwards;
+}
+
+#svg circle {
+  stroke-dasharray: 226px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 6px;
+  stroke: #000;
+  fill: none;
+  animation: countdown 4.5s linear forwards;
+}
+
+#svg-NoAnim circle {
+  stroke-dasharray: 226px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 6px;
+  stroke: #000;
+  fill: none;
+  stroke-dashoffset: 0px;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 226px;
+  }
+}
+
+@keyframes countdownArrival {
+  from {
+    transform: scale(7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceTitle {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}

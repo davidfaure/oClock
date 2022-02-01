@@ -5,7 +5,11 @@ import { gameIntro, openModal } from "../../redux/action";
 
 import "./Home.scss";
 import Game from "../Game/Game";
-import { homeAnimation } from "../../utils/animation";
+import {
+  coverAnimation,
+  hideAnimation,
+  homeAnimation,
+} from "../../utils/animation";
 
 function Home() {
   const introGame = useSelector((state) => state.Game.gameIntro);
@@ -34,20 +38,17 @@ function Home() {
   useEffect(() => {
     if (enterGame) {
       tl.current
-        .to(flipRef.current, {
-          height: window.innerHeight,
-          duration: 0.8,
-        })
-        .to(containerRef.current, { autoAlpha: 0 })
+        .add(coverAnimation(flipRef.current, window.innerHeight, 0.8))
+        .add(hideAnimation(containerRef.current))
         .to(flipRef.current, {
           autoAlpha: 0,
-          duration: 0.8,
+          duration: 2,
         })
         .eventCallback(
           "onComplete",
           setTimeout(() => {
-            dispatch(gameIntro());
             dispatch(openModal("intro"));
+            dispatch(gameIntro());
           }, 1600)
         );
     }

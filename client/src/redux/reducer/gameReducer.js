@@ -80,9 +80,8 @@ const gameReducer = (state = intialState, action) => {
       };
     case types.CALCULATE_TIME: {
       const { time } = action;
-      const finalScore = 180 - time;
-      const minutes = Math.floor(finalScore / 60);
-      const seconds = finalScore % 60;
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
       return {
         ...state,
         time: `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`,

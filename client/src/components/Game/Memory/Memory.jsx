@@ -24,6 +24,7 @@ function Memory() {
 
   const timeout = useRef(null);
 
+  // redux part with action dispatcher and state variable
   const restartTheGame = useSelector((state) => state.Game.gameRestart);
   const winGame = useSelector((state) => state.Game.gameWinner);
   const dispatch = useDispatch();
@@ -33,13 +34,6 @@ function Memory() {
       dispatch(gameWin());
     }
   };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     dispatch(gameWin());
-  //     dispatch(openModal("win"));
-  //   }, 2000);
-  // }, []);
 
   const handleCardClicked = (index) => {
     // Have a maximum of 2 items in array at once.
@@ -79,11 +73,13 @@ function Memory() {
   };
 
   const checkIsInactive = (card) => {
+    // if car is in the already found array, hide it
     return Boolean(foundCards[card.type]);
   };
 
   useEffect(() => {
     let timeOut = null;
+    // once user open 2 cards compare them.
     if (cardsOpen.length === 2) {
       timeOut = setTimeout(compare, 300);
     }
@@ -93,17 +89,19 @@ function Memory() {
   }, [cardsOpen]);
 
   useEffect(() => {
+    // check victory every cards found
     checkVictory();
   }, [foundCards]);
 
   useEffect(() => {
     if (restartTheGame) {
+      // set everything back to 0.
       setFoundCards({});
       setCardsOpen([]);
       dispatch(setScore(0));
       dispatch(resetFoundFruits());
       setShouldDisableAllCards(false);
-      // set a shuffled deck of cards
+      // set a snew huffled deck of cards
       setCards(shuffleCard(gameGrid.concat(gameGrid)));
       dispatch(gameRestart());
     }

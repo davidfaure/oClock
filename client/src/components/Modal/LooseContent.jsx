@@ -25,6 +25,7 @@ function LooseContent() {
             src={star.image}
             alt="star"
             ref={(el) => addToRef(el, imageRef)}
+            draggable="false"
           />
         ))}
       </div>
