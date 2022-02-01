@@ -80,7 +80,7 @@ function Scoreboard() {
               </div>
               <div className="Scrollbar-Container">
                 <p>Scroll Down</p>
-                <img src={images.arrowDown} alt="arrow" />
+                <img src={images.arrowDown} alt="arrow" draggable="false" />
               </div>
             </>
           )}

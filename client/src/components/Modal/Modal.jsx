@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
@@ -19,12 +20,15 @@ import Scoreboard from "../Game/Scoreboard/Scoreboard";
 import WinContent from "./WinContent";
 import LooseContent from "./LooseContent";
 import { fadeIn } from "../../utils/animation";
+import CountDown from "./CountDown";
 
 function Modal({ type }) {
   const dispatch = useDispatch();
   const [showScore, setShowScore] = useState(false);
   const [inputData, setInputData] = useState({ name: "" });
   const [nameGiven, setNameGiven] = useState(false);
+  const [countDown, setCountDown] = useState(false);
+  const [countDownOver, setCountDownOver] = useState(false);
 
   const tl = useRef();
 
@@ -54,6 +58,18 @@ function Modal({ type }) {
       .add(fadeIn(exitButtonRef.current))
       .add(fadeIn(closeButtonRef.current));
   }, []);
+
+  useEffect(() => {
+    if (countDown) {
+      setTimeout(() => {
+        setCountDownOver(true);
+        setTimeout(() => {
+          dispatch(closeModal());
+          dispatch(gameStart());
+        }, 1000);
+      }, 5500);
+    }
+  }, [countDown]);
 
   const getContent = (step) => {
     switch (step) {
@@ -87,8 +103,7 @@ function Modal({ type }) {
   const closeIt = (action) => {
     switch (action) {
       case "intro":
-        dispatch(gameStart());
-        dispatch(closeModal());
+        setCountDown(true);
         break;
       case "win":
         dispatch(gameRestart());
@@ -110,38 +125,44 @@ function Modal({ type }) {
     <div className="Modal-Game">
       <div className="Modal-Blur" />
       <div className="Modal-Container">
-        <h1 ref={titleRef}>{getTitle(type)}</h1>
-        {getContent(type)}
-        <button
-          onClick={() => setShowScore(!showScore)}
-          type="button"
-          className={`Modal-button ${showScore ? "tertiary" : "secondary"}`}
-          ref={scoreButtonRef}
-        >
-          {showScore ? "Hide Score" : "Show Score"}
-        </button>
-        {showScore && <Scoreboard />}
-        <div className="Modal-Button-Container">
-          {type === "win" && (
+        {countDown ? (
+          <CountDown countDownOver={countDownOver} />
+        ) : (
+          <>
+            <h1 ref={titleRef}>{getTitle(type)}</h1>
+            {getContent(type)}
             <button
-              onClick={() => window.location.reload()}
+              onClick={() => setShowScore(!showScore)}
               type="button"
-              className="Modal-button tertiary"
-              ref={exitButtonRef}
+              className={`Modal-button ${showScore ? "tertiary" : "secondary"}`}
+              ref={scoreButtonRef}
             >
-              Exit
+              {showScore ? "Hide Score" : "Show Score"}
             </button>
-          )}
-          <button
-            onClick={() => closeIt(type)}
-            type="button"
-            className="Modal-button primary"
-            disabled={type === "intro" && !nameGiven}
-            ref={closeButtonRef}
-          >
-            {getButtonTitle(type)}
-          </button>
-        </div>
+            {showScore && <Scoreboard />}
+            <div className="Modal-Button-Container">
+              {type === "win" && (
+                <button
+                  onClick={() => window.location.reload()}
+                  type="button"
+                  className="Modal-button tertiary"
+                  ref={exitButtonRef}
+                >
+                  Exit
+                </button>
+              )}
+              <button
+                onClick={() => closeIt(type)}
+                type="button"
+                className="Modal-button primary"
+                disabled={type === "intro" && !nameGiven}
+                ref={closeButtonRef}
+              >
+                {getButtonTitle(type)}
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

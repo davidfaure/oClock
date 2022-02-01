@@ -1,4 +1,4 @@
-// GSAP animation and utils function to anime
+// GSAP animation and utils function to anime and clean code in component for animation.
 import gsap from "gsap";
 
 const addToRef = (el, ref) => {
@@ -17,6 +17,14 @@ export const starAnimation = (target, stagger) => {
 
 export const homeAnimation = (target, y, duration, autoAlpha, delay) => {
   return gsap.to(target, { y, autoAlpha, duration, delay });
+};
+
+export const coverAnimation = (target, height, duration) => {
+  return gsap.to(target, { height, duration });
+};
+
+export const hideAnimation = (target) => {
+  return gsap.to(target, { autoAlpha: 0 });
 };
 
 export const fadeIn = (target) => {
