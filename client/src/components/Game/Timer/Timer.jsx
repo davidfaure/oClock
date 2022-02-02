@@ -8,7 +8,8 @@ import {
 } from "../../../redux/action";
 import "./Timer.scss";
 
-const maxTime = 850;
+const maxTime = 180; // 3 minutes to win the game
+const dividend = 4.7; // progress bar is 850px and maxTime 180 : 850/180 = 4.7 for animation
 
 function Timer() {
   const startGame = useSelector((state) => state.Game.gameStarted);
@@ -22,7 +23,8 @@ function Timer() {
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("00");
   const [counter, setCounter] = useState(0);
-  const [color, setColor] = useState("#66cb9f");
+  const [color, setColor] = useState(null);
+  const progressWidth = counter * dividend;
 
   const youLoose = () => {
     setCounter(0);
@@ -50,15 +52,19 @@ function Timer() {
   }, [startGame, endGame, winGame]);
 
   useEffect(() => {
+    console.log(counter);
     let intervalId;
     switch (true) {
-      case counter > 54:
+      case counter < 54:
+        setColor("#66cb9f");
+        break;
+      case counter < 108:
         setColor("#3754db");
         break;
-      case counter > 108:
+      case counter < 150:
         setColor("#F7B801");
         break;
-      case counter > 180:
+      case counter < 180:
         setColor("#da2d64");
         break;
       default:
@@ -92,7 +98,7 @@ function Timer() {
 
   const fillerStyles = {
     height: "100%",
-    width: `${counter}px`,
+    width: `${progressWidth}px`,
     backgroundColor: color,
     borderRadius: "35px",
     transition: "width 1s ease",
@@ -102,7 +108,11 @@ function Timer() {
     <div className="timer-wrapper">
       {play && (
         <>
-          <h2>
+          <h2
+            className={
+              counter < 150 ? "render-time-value" : "render-time-value-end"
+            }
+          >
             {minute}:{second}
           </h2>
           <div className="progress-div">
