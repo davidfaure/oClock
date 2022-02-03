@@ -78,7 +78,7 @@ I've already worked on the possibility to choose the difficulty of the game.
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `number` | **Required**. Id of score to fetch |
 
-#### GET a score order by time/score/player and order it.
+#### GET a score order by time/score/player and sort it.
 
 ```http
   GET /api/score/sort?type={type}&asc={asc}
