@@ -3,9 +3,9 @@ import React, { useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import gsap from "gsap";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { starScore } from "../../utils/appData";
 import addToRef, { starAnimation } from "../../utils/animation";
+import postScore from "../../utils/api";
 
 function WinContent() {
   const playerName = useSelector((state) => state.Game.player);
@@ -23,12 +23,7 @@ function WinContent() {
       particleCount: 70,
       spread: 70,
     });
-    const data = {
-      user: playerName,
-      time: playerTime,
-      score: playerScore,
-    };
-    axios.post(`${process.env.REACT_APP_ENDPOINT_API}/score`, data).then();
+    postScore(playerName, playerTime, playerScore);
   }, []);
 
   return (

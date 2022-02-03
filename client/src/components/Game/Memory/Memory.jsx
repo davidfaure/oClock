@@ -101,7 +101,7 @@ function Memory() {
       dispatch(setScore(0));
       dispatch(resetFoundFruits());
       setShouldDisableAllCards(false);
-      // set a snew huffled deck of cards
+      // set a new shuffled deck of cards
       setCards(shuffleCard(gameGrid.concat(gameGrid)));
       dispatch(gameRestart());
     }

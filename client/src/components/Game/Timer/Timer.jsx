@@ -52,7 +52,6 @@ function Timer() {
   }, [startGame, endGame, winGame]);
 
   useEffect(() => {
-    console.log(counter);
     let intervalId;
     switch (true) {
       case counter < 54:
@@ -90,6 +89,7 @@ function Timer() {
     }
 
     if (counter === maxTime) {
+      dispatch(calculateTime(counter));
       youLoose();
     }
 
