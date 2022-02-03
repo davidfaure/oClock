@@ -55,6 +55,7 @@ function Scoreboard() {
                 <div className="Scoreboard-Title">
                   {scoreHeader.map((header) => (
                     <div
+                      key={header.id}
                       className={`Scoreboard-${header.label}`}
                       onClick={
                         header.isSorted

@@ -27,7 +27,7 @@ function FruitsFound() {
               <img
                 src={fruit.image}
                 alt={fruit.type}
-                key={fruit.type}
+                key={fruit.id}
                 ref={(el) => addToRef(el, imageRef)}
                 draggable="false"
               />
