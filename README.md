@@ -51,7 +51,7 @@ The repo is split in 2 sections.
 - At the end of the game you can display the scoreboard and your score will be highlighted.
 - You can sort scoreboard by time, score, player name
 
-## Fof the future
+## For the future
 
 I've already worked on the possibility to choose the difficulty of the game.
 
