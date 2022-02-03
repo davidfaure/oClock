@@ -8,7 +8,7 @@ function GameInfo() {
   const [bestScore, setBestScore] = useState(null);
   const { res } = useAxios({
     method: "GET",
-    url: "/score",
+    url: "/score/sort?type=time&asc=true",
     headers: {
       accept: "*/*",
     },
