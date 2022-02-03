@@ -12,7 +12,7 @@ import { scoreHeader } from "../../../utils/appData";
 function Scoreboard() {
   const { res, error, loading } = useAxios({
     method: "GET",
-    url: "/score",
+    url: "/score/sort?type=time&asc=true",
     headers: {
       accept: "*/*",
     },
