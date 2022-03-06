@@ -17,12 +17,27 @@
 .FruitsFound-Container {
   width: 20%;
   height: 100%;
-  border-radius: 18px;
+  border-radius: 10px;
   box-shadow: 2px 2px 4px 4px #dedede;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+// .GameInfo-Container,
+// .FruitsFound-Container {
+//   width: 20%;
+//   height: 100%;
+//   background: rgba(255, 255, 255, 0.2);
+//   // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+//   backdrop-filter: blur(8.5px);
+//   -webkit-backdrop-filter: blur(8.5px);
+//   border-radius: 10px;
+//   border: 1px solid rgba(255, 255, 255, 0.18);
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
 
 .GameInfo-Up {
   width: 100%;
